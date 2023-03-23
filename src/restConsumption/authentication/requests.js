@@ -1,13 +1,13 @@
 import { generalRequest } from '../../utilities';
 import { url, port, entryPoint } from './server';
 
-const URL = `http://${url}:${port}/${entryPoint}`;
+const URL = `http://${url}:${port}`;
 
 const requests = {
     login: (_, { loginBody }) =>
         generalRequest(`${URL}/login`, 'POST', loginBody),
     register: (_, { registerBody }) =>
-        generalRequest(`${URL}/register`, 'POST', registerBody),
+        generalRequest(`${URL}/signup`, 'POST', registerBody),
     validate: (_, { token }) => {
         const headers = {
             Authorization: "Bearer" + token

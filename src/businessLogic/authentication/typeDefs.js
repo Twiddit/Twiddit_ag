@@ -1,39 +1,39 @@
 export const loginTypeDef = `
     input Login {
-        username: String!
+        email: String!
         password: String
     }
 `
 
 export const registerTypeDef = `
     input Register {
-        Id: Int!
-        Email: String!
-        Password: String!
-        Birthday: String!
-        Phone: String!
-        LastAccess: String!
-        ProfilePhoto:String!
-        Description:String!
-        Username:String!
-        Active:Int!
+        email: String!
+        password: String!
+        birthday: String!
+        phone: String!
+        profilePhoto:String!
+        description:String!
+        username:String!
     }
     type AccountResult {
-        statusCode: Int
-        method: String
         message: String
-        data: Data
+        data: String!
     }
-    type Data {
-        accessToken: String
+    type RegistrationResult {
+        message: String
+    }
+
+    type ValidationResult {
+        message: String
+        validToken: String!
     }
 `
 
-export const accountQueries = `
+export const authenticationQueries = `
     login(loginBody: Login!): AccountResult 
-    validate(token: String!): AccountResult
+    validate(token: String!): ValidationResult
 `
 
-export const accountMutations = `
-    register(registerBody: Register!): AccountResult
+export const authenticationMutations = `
+    register(registerBody: Register!): RegistrationResult
 `

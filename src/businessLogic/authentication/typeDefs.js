@@ -5,6 +5,7 @@ export const loginTypeDef = `
     }
 `
 
+
 export const registerTypeDef = `
     input Register {
         email: String!
@@ -15,25 +16,43 @@ export const registerTypeDef = `
         description:String!
         username:String!
     }
-    type AccountResult {
-        message: String
-        data: String!
+
+    input PasswordChange {
+        Previous: String!
+        NewPass: String!
+        Authorization: String!
     }
+
+    input AuthorizationData {
+        accessToken: String!
+    }
+
+    type AccountResult {
+        statusCode: Int
+        method: String
+        message: String
+        data: Data
+    }
+    
+    type Data {
+        accessToken: String
+    }
+
     type RegistrationResult {
         message: String
     }
 
     type ValidationResult {
         message: String
-        validToken: String!
     }
 `
 
 export const authenticationQueries = `
     login(loginBody: Login!): AccountResult 
-    validate(token: String!): ValidationResult
+    validate(token: AuthorizationData!): AccountResult
 `
 
 export const authenticationMutations = `
     register(registerBody: Register!): RegistrationResult
+    password(passwordChangeBody: PasswordChange!): AccountResult
 `

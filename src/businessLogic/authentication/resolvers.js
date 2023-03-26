@@ -13,6 +13,9 @@ const authenticationResolvers = {
     Mutation: {
         register: (_, { registerBody }) => {
             return authenticationRequests.register(_, { registerBody })
+        },
+        password: (_, { passwordChangeBody }) => {
+            return authenticationRequests.password(_, { passwordChangeBody })
         }
     }
 }

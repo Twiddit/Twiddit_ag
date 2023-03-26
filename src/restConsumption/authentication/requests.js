@@ -6,13 +6,15 @@ const URL = `http://${url}:${port}`;
 const requests = {
     login: (_, { loginBody }) =>
         generalRequest(`${URL}/login`, 'POST', loginBody),
+
     register: (_, { registerBody }) =>
         generalRequest(`${URL}/signup`, 'POST', registerBody),
+
+    password: (_, { passwordChangeBody }) =>
+        generalRequest(`${URL}/change_password`, 'POST', passwordChangeBody),
+
     validate: (_, { token }) => {
-        const headers = {
-            Authorization: "Bearer" + token
-        };
-        generalRequest(`${URL}/validate`, 'GET', _, headers)
+        generalRequest(`${URL}/validate`, 'POST', token)
     }
 };
 

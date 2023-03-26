@@ -1,35 +1,27 @@
-export const viewProfileTypeDef = `
+export const profileTypeDef = `
     type ProfileView {
-        Email: String!
-        Password: String!
-        Birthday: String!
-        Phone: String!
-        LastAccess: String!
-        ProfilePhoto:String!
-        Description:String!
-        Username:String!
+        email: String!
+        birthday: String!
+        phone: String!
+        profile_photo: String!
+        description: String!
+        username: String!
+    }
+
+    input ProfileUpdate {
+        email: String
+        birthday: String
+        phone: String
+        profile_photo: String
+        description: String
+        username: String
     }
 `;
 
-export const updateProfileTypeDef = `
-    input InputProfile {
-        Email: String!
-        Phone: String!       
-        Password: String!
-        Description: String!
-    }
-    type ProfileResult {
-        statusCode: Int
-        method: String
-        message: String
-        data: ProfileView
-    }
-`
-
 export const profileQueries = `
-      viewProfile(username: String!): ProfileResult
+      viewProfile(id: Int!): ProfileView
   `;
 
 export const profileMutations = `
-      updateProfile(username: String!, profile: InputProfile!): ProfileResult
+      updateProfile(id: Int!, profile: ProfileUpdate!): ProfileView
   `;

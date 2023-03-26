@@ -13,10 +13,11 @@ const communidditsResolvers = {
     },
 
     Mutation: {
-        createCommuniddit: (_,{ communiddit }) => {
+        createCommuniddit: async(_,{ communiddit }) => {
             for (let userId of communiddit.mods){
-                let user = profileRequests.viewProfile(_,{ userId });
-                if(user.data==null){
+                const id = parseInt(userId)
+                const user = await profileRequests.viewProfile(_,{ id });
+                if(user.email==undefined){
                     return 'Uno o mas usuarios seleccionados para moderador no existen'
                 } 
             }
@@ -40,19 +41,21 @@ const communidditsResolvers = {
         modCommunidditRules: (_,{ communidditId,rules }) =>{
             return communidditsRequests.modCommunidditRules(_,{ communidditId,rules })
         },
-        modCommunidditMods: (_,{ communidditId,mods }) =>{
+        modCommunidditMods: async(_,{ communidditId,mods }) =>{
             for (let userId of mods){
-                let user = profileRequests.viewProfile(_,{ userId });
-                if(user.data==null){
+                const id = parseInt(userId)
+                const user = await profileRequests.viewProfile(_,{ id });
+                if(user.email==undefined){
                     return 'Uno o mas usuarios seleccionados para moderador no existen'
                 }
             }
             return communidditsRequests.modCommunidditMods(_,{ communidditId,mods })
         },
-        addCommunidditMember: (_,{ communidditId,userId }) =>{
-
-            let user = profileRequests.viewProfile(_,{ userId });
-                if(user.data==null){
+        addCommunidditMember: async (_,{ communidditId,userId }) =>{
+            
+            const id = parseInt(userId)
+            const user = await profileRequests.viewProfile(_,{ id });
+                if(user.email==undefined){
                     return 'El usuario no existe'
                 }
 

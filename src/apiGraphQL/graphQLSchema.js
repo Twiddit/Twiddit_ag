@@ -7,9 +7,13 @@ import {
     loginTypeDef, registerTypeDef, authenticationQueries, authenticationMutations
 } from '../businessLogic/authentication/typeDefs'
 
+import {
+    communidditsTypeDef, communidditsQueries, communidditsMutations
+} from '../businessLogic/communiddits/typeDefs'
 
 
 import authenticationResolvers from '../businessLogic/authentication/resolvers'
+import communidditsResolvers from '../businessLogic/communiddits/resolvers'
 
 
 // merge the typeDefs
@@ -18,12 +22,15 @@ const mergedTypeDefs = mergeSchemas(
         'scalar JSON',
         loginTypeDef,
         registerTypeDef,
+        communidditsTypeDef
     ],
     [
-        authenticationQueries
+        authenticationQueries,
+        communidditsQueries
     ],
     [   
-        authenticationMutations
+        authenticationMutations,
+        communidditsMutations
     ]
 );
 
@@ -33,5 +40,6 @@ export default makeExecutableSchema({
     resolvers: merge(
         { JSON: GraphQLJSON }, // allows scalar JSON
         authenticationResolvers,
+        communidditsResolvers
     )
 });

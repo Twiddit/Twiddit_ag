@@ -1,4 +1,5 @@
 import communidditsRequests from '../../restConsumption/communiddits/requests';
+import profileRequests from '../../restConsumption/profile/requests';
 
 const communidditsResolvers = {
     Query: {
@@ -13,6 +14,12 @@ const communidditsResolvers = {
 
     Mutation: {
         createCommuniddit: (_,{ communiddit }) => {
+            for (let userId of communiddit.mods){
+                let user = profileRequests.viewProfile(_,{ userId });
+                if(user.data==null){
+                    return 'Uno o mas usuarios seleccionados para moderador no existen'
+                } 
+            }
             return communidditsRequests.createCommuniddit(_, { communiddit })
         },
         deleteCommuniddit: (_,{ communidditId }) => {
@@ -34,9 +41,21 @@ const communidditsResolvers = {
             return communidditsRequests.modCommunidditRules(_,{ communidditId,rules })
         },
         modCommunidditMods: (_,{ communidditId,mods }) =>{
+            for (let userId of mods){
+                let user = profileRequests.viewProfile(_,{ userId });
+                if(user.data==null){
+                    return 'Uno o mas usuarios seleccionados para moderador no existen'
+                }
+            }
             return communidditsRequests.modCommunidditMods(_,{ communidditId,mods })
         },
         addCommunidditMember: (_,{ communidditId,userId }) =>{
+
+            let user = profileRequests.viewProfile(_,{ userId });
+                if(user.data==null){
+                    return 'El usuario no existe'
+                }
+
             return communidditsRequests.addCommunidditMember(_,{ communidditId,userId })
         },
         removeCommunidditMember: (_,{ communidditId,userId }) =>{

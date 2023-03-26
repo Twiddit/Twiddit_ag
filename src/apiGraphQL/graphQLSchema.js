@@ -15,10 +15,16 @@ import {
     relationshipTypeDef, relationshipQueries, relationshipMutations
 } from '../businessLogic/social/typeDefs'
 
+import {
+    profileTypeDef, profileQueries, profileMutations
+} from '../businessLogic/profile/typeDefs'
+
 
 import authenticationResolvers from '../businessLogic/authentication/resolvers'
 import communidditsResolvers from '../businessLogic/communiddits/resolvers'
 import relationshipResolvers from '../businessLogic/social/resolvers'
+import profileResolvers from '../businessLogic/profile/resolvers'
+
 
 
 // merge the typeDefs
@@ -28,17 +34,20 @@ const mergedTypeDefs = mergeSchemas(
         loginTypeDef,
         registerTypeDef,
         communidditsTypeDef,
-        relationshipTypeDef
+        relationshipTypeDef,
+        profileTypeDef
     ],
     [
         authenticationQueries,
         communidditsQueries,
-        relationshipQueries
+        relationshipQueries,
+        profileQueries
     ],
     [   
         authenticationMutations,
         communidditsMutations,
-        relationshipMutations
+        relationshipMutations, 
+        profileMutations
     ]
 );
 
@@ -49,6 +58,7 @@ export default makeExecutableSchema({
         { JSON: GraphQLJSON }, // allows scalar JSON
         authenticationResolvers,
         communidditsResolvers,
-        relationshipResolvers
+        relationshipResolvers,
+        profileResolvers
     )
 });

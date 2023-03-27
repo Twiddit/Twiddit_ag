@@ -13,9 +13,9 @@ const requests = {
     password: (_, { passwordChangeBody }) =>
         generalRequest(`${URL}/change_password`, 'POST', passwordChangeBody),
 
-    validate: (_, { token }) => {
+    validate: (_, { token }) => 
         generalRequest(`${URL}/validate`, 'POST', token)
-    }
+    
 };
 
 export default requests;

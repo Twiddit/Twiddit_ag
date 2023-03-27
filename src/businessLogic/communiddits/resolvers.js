@@ -42,7 +42,7 @@ const communidditsResolvers = {
             return communidditsRequests.modCommunidditRules(_,{ communidditId,rules })
         },
         modCommunidditMods: async(_,{ communidditId,mods }) =>{
-            for (let userId of mods){
+            for (let userId of mods.mods){
                 const id = parseInt(userId)
                 const user = await profileRequests.viewProfile(_,{ id });
                 if(user.email==undefined){

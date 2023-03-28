@@ -19,11 +19,15 @@ import {
     profileTypeDef, profileQueries, profileMutations
 } from '../businessLogic/profile/typeDefs'
 
+import {
+    twidditsTypeDef, twidditsQueries, twidditsMutations
+} from '../businessLogic/twiddits/typeDefs'
 
 import authenticationResolvers from '../businessLogic/authentication/resolvers'
 import communidditsResolvers from '../businessLogic/communiddits/resolvers'
 import relationshipResolvers from '../businessLogic/social/resolvers'
 import profileResolvers from '../businessLogic/profile/resolvers'
+import twidditsResolvers from '../businessLogic/twiddits/resolvers'
 
 
 
@@ -35,19 +39,22 @@ const mergedTypeDefs = mergeSchemas(
         registerTypeDef,
         communidditsTypeDef,
         relationshipTypeDef,
-        profileTypeDef
+        profileTypeDef,
+        twidditsTypeDef
     ],
     [
         authenticationQueries,
         communidditsQueries,
         relationshipQueries,
-        profileQueries
+        profileQueries,
+        twidditsQueries
     ],
     [   
         authenticationMutations,
         communidditsMutations,
         relationshipMutations, 
-        profileMutations
+        profileMutations,
+        twidditsMutations
     ]
 );
 
@@ -59,6 +66,7 @@ export default makeExecutableSchema({
         authenticationResolvers,
         communidditsResolvers,
         relationshipResolvers,
-        profileResolvers
+        profileResolvers,
+        twidditsResolvers
     )
 });

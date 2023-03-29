@@ -1,9 +1,7 @@
 import relationshipResolvers from '../social/resolvers';
 import profileResolvers from '../profile/resolvers';
 import twidditsResolvers from '../twiddits/resolvers';
-
-let followees = {};
-let userFeedTwiddits = {};
+ 
 
 
 const userFeedResolvers = {
@@ -11,22 +9,18 @@ const userFeedResolvers = {
         userFeed: async (_, {userId}) => {
             const id = userId
             const followedList = await relationshipResolvers.Query.followingAll(_, {followerId:id})
-            
+            const returnFeed = [];
             // Ahora iteramos sobre los resultados para obtener los datos de los perfiles de cada twiddit
             for (let i = 0; i < followedList.length; i++) {
+                const twiddit = {}
                 const followeeID = followedList[i].followedId;
-                followees[followeeID] = await profileResolvers.Query.viewProfile(_, {id: followeeID})
+                twiddit["user"] = await profileResolvers.Query.viewProfile(_, {id: followeeID})
+                twiddit["twiddit"] = await twidditsResolvers.Query.infoTwidditsUser(_, {userId: followeeID.toString()})
+                returnFeed.push(twiddit)
+                console.log(twiddit)
             }
-
-            // Obtenemos los twiddits de cada usuario al que se sigue 
-            for (let j = 0; j < followedList.length; j++) {
-                const followeeID = followedList[j].followedId.toString();
-                userFeedTwiddits[followeeID] = await twidditsResolvers.Query.infoTwidditsUser(_, {userId: followeeID})
-            }
-            console.log(userFeedTwiddits);
             
-            
-            return followedList
+            return returnFeed
         }       
     },
 

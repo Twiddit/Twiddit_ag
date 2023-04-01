@@ -36,6 +36,8 @@ export const userFeedTypeDef = `
 
 export const userFeedQueries = `
     userFeed(userId: Int!): [TwidditFeed!]
+    myTwiddits(userId: Int!): TwidditFeed
+    communidditsFeed(communidditId: Int!): [TwidditFeed!]
 `;
 
 export const userFeedMutations= ` 

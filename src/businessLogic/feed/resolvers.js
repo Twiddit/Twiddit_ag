@@ -2,7 +2,12 @@ import relationshipResolvers from '../social/resolvers';
 import profileResolvers from '../profile/resolvers';
 import twidditsResolvers from '../twiddits/resolvers';
  
-
+var groupBy = function(xs) {
+    return xs.reduce(function(rv, x) {
+      (rv[x.twiddit.userId] = rv[x.twiddit.userId] || []).push(x);
+      return rv;
+    }, {});
+  };
 
 const userFeedResolvers = {
     Query: {
@@ -17,11 +22,30 @@ const userFeedResolvers = {
                 twiddit["user"] = await profileResolvers.Query.viewProfile(_, {id: followeeID})
                 twiddit["twiddit"] = await twidditsResolvers.Query.infoTwidditsUser(_, {userId: followeeID.toString()})
                 returnFeed.push(twiddit)
-                console.log(twiddit)
             }
             
             return returnFeed
-        }       
+        },
+        myTwiddits: async (_, {userId}) => {
+            const twiddit = {}
+            twiddit["user"] = await profileResolvers.Query.viewProfile(_, {id: userId})
+            twiddit["twiddit"] = await twidditsResolvers.Query.infoTwidditsUser(_, {userId: userId.toString()})
+            return twiddit
+        },
+        communidditsFeed: async (_, {communidditId}) => {
+            const twiddit = await twidditsResolvers.Query.infoTwidditsCommuniddit(_, {communidditId: communidditId.toString()})
+            const groupedFeed = groupBy(twiddit);
+            const returnFeed = []
+            // Recorremos el objeto de GroupBy usuarios
+            for(const [key, value] of Object.entries(groupedFeed)){
+                const userData = await profileResolvers.Query.viewProfile(_, {id: key})
+                returnFeed.push({"user": userData, "twiddit": value})
+            }
+
+            // const userData = await profileResolvers.Query.viewProfile(_, {id: key})
+            console.log(returnFeed)
+            return returnFeed
+        },   
     },
 
     Mutation: {

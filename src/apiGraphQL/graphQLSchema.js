@@ -27,12 +27,20 @@ import {
     userFeedTypeDef, userFeedQueries, userFeedMutations
 } from '../businessLogic/feed/typeDefs'
 
+import {
+    search_engineTypeDef, search_engineQueries, search_engineMutations
+} from '../businessLogic/search_engine/typeDefs'
+
+
+
+
 import authenticationResolvers from '../businessLogic/authentication/resolvers'
 import communidditsResolvers from '../businessLogic/communiddits/resolvers'
 import relationshipResolvers from '../businessLogic/social/resolvers'
 import profileResolvers from '../businessLogic/profile/resolvers'
 import twidditsResolvers from '../businessLogic/twiddits/resolvers'
 import userFeedResolvers from '../businessLogic/feed/resolvers'
+import search_engineResolvers from '../businessLogic/search_engine/resolvers'
 
 
 // merge the typeDefs
@@ -46,6 +54,7 @@ const mergedTypeDefs = mergeSchemas(
         profileTypeDef,
         twidditsTypeDef,
         userFeedTypeDef,
+        search_engineTypeDef
     ],
     [
         authenticationQueries,
@@ -54,6 +63,7 @@ const mergedTypeDefs = mergeSchemas(
         profileQueries,
         twidditsQueries,
         userFeedQueries,
+        search_engineQueries
     ],
     [   
         authenticationMutations,
@@ -62,6 +72,7 @@ const mergedTypeDefs = mergeSchemas(
         profileMutations,
         twidditsMutations,
         userFeedMutations,
+        search_engineMutations
     ]
 );
 
@@ -76,5 +87,6 @@ export default makeExecutableSchema({
         profileResolvers,
         twidditsResolvers,
         userFeedResolvers,
+        search_engineResolvers
     )
 });

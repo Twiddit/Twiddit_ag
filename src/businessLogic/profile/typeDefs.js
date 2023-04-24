@@ -8,6 +8,11 @@ export const profileTypeDef = `
         username: String!
     }
 
+    type NotificationView {
+        followerId: Int!
+        followedId: Int!
+    }
+
     input ProfileUpdate {
         email: String
         birthday: String
@@ -20,6 +25,7 @@ export const profileTypeDef = `
 
 export const profileQueries = `
       viewProfile(id: Int!): ProfileView
+      viewNotifications(id: Int!): [NotificationView]
   `;
 
 export const profileMutations = `

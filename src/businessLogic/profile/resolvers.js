@@ -6,6 +6,10 @@ const profileResolvers = {
         viewProfile: (_, {id}) => {
             return profileRequests.viewProfile(_, {id})
         },
+
+        viewNotifications: (_, {id}) => {
+            return profileRequests.viewNotifications(_, {id})
+        },
                 
     },
 

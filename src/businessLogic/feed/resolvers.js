@@ -1,5 +1,6 @@
 import relationshipResolvers from '../social/resolvers';
 import profileResolvers from '../profile/resolvers';
+import profileRequests from '../profile/resolvers';
 import twidditsResolvers from '../twiddits/resolvers';
  
 var groupBy = function(xs) {
@@ -46,20 +47,9 @@ const userFeedResolvers = {
             console.log(returnFeed)
             return returnFeed
         },   
-    },
-
-    Mutation: {
-        createRelationship: async(_, {relationship}) => {
-            let id = relationship.followedId
-            const user1 = await profileRequests.viewProfile(_, { id });
-            id = relationship.followerId
-            const user2 = await profileRequests.viewProfile(_, { id });
-            if (user1.email != undefined && user2.email != undefined){
-                return relationshipRequests.createRelationship(_, {relationship})
-            }
-            return null
-        },
     }
+
+    
     
 }
 

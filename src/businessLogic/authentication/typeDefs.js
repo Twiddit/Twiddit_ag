@@ -36,6 +36,7 @@ export const registerTypeDef = `
     
     type Data {
         accessToken: String
+        userId: String
     }
 
     type RegistrationResult {

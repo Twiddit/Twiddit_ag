@@ -14,8 +14,9 @@ const profileResolvers = {
                 const notification = {}
                 const followerID = userNotifications[i].followerId;
                 const followerData = await profileResolvers.Query.viewProfile(_, {id: followerID});
-                notification["followerUsername"] = followerData.username
-                notifications.push(notification)
+                notification["followerUsername"] = followerData.username;
+                notification["followerID"] = followerID;
+                notifications.push(notification);
             }
             
             return notifications

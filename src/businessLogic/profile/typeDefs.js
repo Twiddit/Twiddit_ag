@@ -10,6 +10,7 @@ export const profileTypeDef = `
 
     type NotificationView {
         followerUsername: String!
+        followerID: Int!
     }
 
     input ProfileUpdate {

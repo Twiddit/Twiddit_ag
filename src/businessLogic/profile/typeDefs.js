@@ -9,8 +9,8 @@ export const profileTypeDef = `
     }
 
     type NotificationView {
-        followerId: Int!
-        followedId: Int!
+        followerUsername: String!
+        followerID: Int!
     }
 
     input ProfileUpdate {

@@ -7,8 +7,19 @@ const profileResolvers = {
             return profileRequests.viewProfile(_, {id})
         },
 
-        viewNotifications: (_, {id}) => {
-            return profileRequests.viewNotifications(_, {id})
+        viewNotifications: async (_, {id}) => {
+            const userNotifications = await profileRequests.viewNotifications(_, {id})
+            const notifications = []
+            for (let i=0; i < userNotifications.length; i++){
+                const notification = {}
+                const followerID = userNotifications[i].followerId;
+                const followerData = await profileResolvers.Query.viewProfile(_, {id: followerID});
+                notification["followerUsername"] = followerData.username;
+                notification["followerID"] = followerID;
+                notifications.push(notification);
+            }
+            
+            return notifications
         },
                 
     },

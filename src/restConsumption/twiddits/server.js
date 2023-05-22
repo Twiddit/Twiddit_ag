@@ -4,6 +4,6 @@ export const entryPoint = {
   twiddits : "twiddit",
   replies : "reply",
   likes : "like",
-  dislikes : "dislikes",
+  dislikes : "dislike",
   info_twiddits : "info-twiddit",
 }

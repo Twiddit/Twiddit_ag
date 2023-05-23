@@ -7,8 +7,8 @@ const searchRequests = {
     searchTwiddit: (_, { text }) => 
         generalRequest(`${URL}/${entryPoint.twiddit}/findByText/${text}`, 'GET'),
 
-    // updateProfile: (_, { id, profile }) => 
-    //     generalRequest(`${URL}${id}`, 'PATCH', profile),
+    searchUser: (_, { text }) => 
+        generalRequest(`${URL}/${entryPoint.user}/findByText/${text}`, 'GET'),
 
 }
 

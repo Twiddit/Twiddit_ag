@@ -13,7 +13,21 @@ export const search_engineTypeDef = `
         videoURL: String
         tags: [String]
     }
+
+    type Profile2 {
+      id: String!
+      email: String!
+      birthday: String!
+      phone: String!
+      profile_photo: String!
+      description: String!
+      username: String!
+  }
   `;
+
+
+
+ 
 
 
 
@@ -22,6 +36,7 @@ export const search_engineTypeDef = `
 
 export const search_engineQueries = `
 searchTwiddit(text: String!): [Twiddit3!]
+searchUser(text: String!): [Profile2!]
 `;
 
 export const search_engineMutations= ` 

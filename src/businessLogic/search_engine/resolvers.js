@@ -9,11 +9,13 @@ const searchResolvers = {
                 
     },
 
-    // Mutation: {
-    //     updateProfile: (_, {id, profile}) => {
-    //         return profileRequests.updateProfile(_, {id, profile})
-    //     },
-    // }
+    Query: {
+        
+        searchUser: (_, {text}) => {
+            return searchRequests.searchUser(_, {text})
+        },
+                
+    },
     
 }
 

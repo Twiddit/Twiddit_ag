@@ -6,16 +6,11 @@ const searchResolvers = {
         searchTwiddit: (_, {text}) => {
             return searchRequests.searchTwiddit(_, {text})
         },
-                
-    },
-
-    Query: {
-        
         searchUser: (_, {text}) => {
             return searchRequests.searchUser(_, {text})
         },
                 
-    },
+    }
     
 }
 

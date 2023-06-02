@@ -1,7 +1,6 @@
 FROM node:carbon-slim
 
 # Create app directory
-RUN npm i -g nodemon
 RUN mkdir -p /home/app
 
 WORKDIR /home/app

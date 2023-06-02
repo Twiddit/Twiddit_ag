@@ -11,6 +11,7 @@ export const search_engineTypeDef = `
         imageURL3: String
         imageURL4: String
         videoURL: String
+        user: String
         tags: [String]
     }
 

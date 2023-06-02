@@ -10,12 +10,9 @@ type aux1{
 }
 
 type aux2{
-    _id: String!
-    userId: String!
+    userName: String!
+    channelName: String!
     content: String!
-    edited: Boolean!
-    channelId: String!
-    updated_at: String!
     created_at: String!
 }
   `;

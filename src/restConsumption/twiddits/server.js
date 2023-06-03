@@ -1,4 +1,4 @@
-export const url = '172.17.0.1'
+export const url = '34.138.201.211'
 export const port = '8080'
 export const entryPoint = {
   twiddits : "twiddit",

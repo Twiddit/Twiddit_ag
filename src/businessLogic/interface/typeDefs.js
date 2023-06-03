@@ -6,7 +6,7 @@ type GetMessages {
     result: aux1!
   }
 type aux1{
-  result: [String]
+  result: [String]!
 }
 
 type aux2{

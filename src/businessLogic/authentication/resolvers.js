@@ -7,8 +7,11 @@ const authenticationResolvers = {
             return authenticationRequests.login(_, {loginBody})
         }, 
         validate: (_, {token}) => {
-            return authenticationRequests.validate(_, {token})
-        }
+           return authenticationRequests.validate(_, {token})
+        }, 
+        logout: (_, {token}) => {
+            return authenticationRequests.logout(_, {token})
+         } 
     },
     Mutation: {
         register: (_, { registerBody }) => {

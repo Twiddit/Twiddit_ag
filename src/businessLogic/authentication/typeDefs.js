@@ -51,6 +51,7 @@ export const registerTypeDef = `
 export const authenticationQueries = `
     login(loginBody: Login!): AccountResult 
     validate(token: AuthorizationData!): AccountResult
+    logout(token: AuthorizationData!): AccountResult
 `
 
 export const authenticationMutations = `

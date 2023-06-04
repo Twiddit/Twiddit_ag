@@ -14,7 +14,9 @@ const requests = {
         generalRequest(`${URL}/change_password`, 'POST', passwordChangeBody),
 
     validate: (_, { token }) => 
-        generalRequest(`${URL}/validate`, 'POST', token)
+        generalRequest(`${URL}/validate`, 'POST', token),
+    logout: (_, { token }) => 
+        generalRequest(`${URL}/logout`, 'POST', token)
     
 };
 
